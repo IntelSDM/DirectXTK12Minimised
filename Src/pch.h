@@ -189,28 +189,26 @@
 
 #define _USE_MATH_DEFINES
 #include <algorithm>
-#include <atomic>
+//#include <atomic>
 #include <array>
-#include <cassert>
-#include <cmath>
-#include <cstddef>
-#include <cstdint>
-#include <cstdlib>
-#include <cstring>
-#include <cwchar>
-#include <initializer_list>
-#include <iterator>
+//#include <cassert>
+//#include <cmath>
+//#include <cstddef>
+//#include <cstdint>
+//#include <cstdlib>
+//#include <cstring>
+//#include <cwchar>
+//#include <initializer_list>
+//#include <iterator>
 #include <list>
 #include <map>
-#include <memory>
-#include <new>
-#include <set>
-#include <stdexcept>
+//#include <memory>
+//#include <new>
+//#include <set>
 #include <string>
-#include <system_error>
-#include <tuple>
-#include <type_traits>
-#include <utility>
+//#include <tuple>
+//#include <type_traits>
+//#include <utility>
 #include <vector>
 
 #pragma warning(push)
@@ -254,26 +252,10 @@
 
 #ifndef __MINGW32__
 // DirectX Tool Kit for Audio is in all versions of DirectXTK12
-#include <mmreg.h>
-#include <Audioclient.h>
 
-#ifndef XAUDIO2_HELPER_FUNCTIONS
-#define XAUDIO2_HELPER_FUNCTIONS
-#endif
-
-#include <xaudio2.h>
-#include <xaudio2fx.h>
 
 #pragma warning(push)
 #pragma warning(disable : 4619 4616 5246)
-#include <x3daudio.h>
 #pragma warning(pop)
 
-#include <xapofx.h>
-
-#if (defined(_XBOX_ONE) && defined(_TITLE)) || defined(_GAMING_XBOX)
-#include <apu.h>
-#include <shapexmacontext.h>
-#include <xma2defs.h>
-#endif
 #endif

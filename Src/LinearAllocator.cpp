@@ -51,13 +51,12 @@ void LinearAllocatorPage::Release() noexcept
 {
     assert(mRefCount > 0);
 
-    if (mRefCount.fetch_sub(1) == 1)
+    if (--mRefCount == 0)
     {
         mUploadResource->Unmap(0, nullptr);
         delete this;
     }
 }
-
 
 //--------------------------------------------------------------------------------------
 LinearAllocator::LinearAllocator(

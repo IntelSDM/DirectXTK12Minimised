@@ -11,7 +11,6 @@
 #pragma once
 
 #include <memory>
-#include <stdexcept>
 #include <type_traits>
 
 #include "PlatformHelpers.h"

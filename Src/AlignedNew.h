@@ -12,7 +12,6 @@
 
 #include <cstddef>
 #include <cstdlib>
-#include <new>
 
 #ifdef _WIN32
 #include <malloc.h>

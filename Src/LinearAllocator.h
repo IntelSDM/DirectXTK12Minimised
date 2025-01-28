@@ -42,7 +42,7 @@
 
 #pragma once
 
-#include <atomic>
+//#include <atomic>
 
 
 namespace DirectX
@@ -66,8 +66,8 @@ namespace DirectX
         size_t BytesUsed() const noexcept { return mOffset; }
         size_t Size() const noexcept { return mSize; }
 
-        void AddRef() noexcept { mRefCount.fetch_add(1); }
-        int32_t RefCount() const noexcept { return mRefCount.load(); }
+        void AddRef() noexcept { ++mRefCount; }
+        int32_t RefCount() const noexcept { return mRefCount; }
         void Release() noexcept;
 
     protected:
@@ -84,9 +84,8 @@ namespace DirectX
         Microsoft::WRL::ComPtr<ID3D12Resource>  mUploadResource;
 
     private:
-        std::atomic<int32_t>                    mRefCount;
+        int32_t                                 mRefCount;
     };
-
     class LinearAllocator
     {
     public:
