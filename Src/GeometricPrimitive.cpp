@@ -64,16 +64,16 @@ void GeometricPrimitive::Impl::Initialize(
     const IndexCollection& indices,
     _In_opt_ ID3D12Device* device)
 {
-    if (vertices.size() >= USHRT_MAX)
-        throw std::invalid_argument("Too many vertices for 16-bit index buffer");
+  //  if (vertices.size() >= USHRT_MAX)
+    //    throw1std::invalid_argument("Too many vertices for 16-bit index buffer");
 
-    if (indices.size() > UINT32_MAX)
-        throw std::invalid_argument("Too many indices");
+   // if (indices.size() > UINT32_MAX)
+      //  throw1std::invalid_argument("Too many indices");
 
     // Vertex data
     uint64_t sizeInBytes = uint64_t(vertices.size()) * sizeof(vertices[0]);
-    if (sizeInBytes > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
-        throw std::invalid_argument("VB too large for DirectX 12");
+  //  if (sizeInBytes > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
+     //  throw1std::invalid_argument("VB too large for DirectX 12");
 
     auto const vertSizeBytes = static_cast<size_t>(sizeInBytes);
 
@@ -84,8 +84,8 @@ void GeometricPrimitive::Impl::Initialize(
 
     // Index data
     sizeInBytes = uint64_t(indices.size()) * sizeof(indices[0]);
-    if (sizeInBytes > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
-        throw std::invalid_argument("IB too large for DirectX 12");
+  //  if (sizeInBytes > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
+     //   throw1std::invalid_argument("IB too large for DirectX 12");
 
     auto const indSizeBytes = static_cast<size_t>(sizeInBytes);
 
@@ -685,21 +685,21 @@ std::unique_ptr<GeometricPrimitive> GeometricPrimitive::CreateCustom(
     _In_opt_ ID3D12Device* device)
 {
     // Extra validation
-    if (vertices.empty() || indices.empty())
-        throw std::invalid_argument("Requires both vertices and indices");
+ //  if (vertices.empty() || indices.empty())
+     //   throw1std::invalid_argument("Requires both vertices and indices");
 
-    if (indices.size() % 3)
-        throw std::invalid_argument("Expected triangular faces");
+  //  if (indices.size() % 3)
+     //   throw1std::invalid_argument("Expected triangular faces");
 
     const size_t nVerts = vertices.size();
-    if (nVerts >= USHRT_MAX)
-        throw std::invalid_argument("Too many vertices for 16-bit index buffer");
+  //  if (nVerts >= USHRT_MAX)
+     //   throw1std::invalid_argument("Too many vertices for 16-bit index buffer");
 
     for (auto it : indices)
     {
         if (it >= nVerts)
         {
-            throw std::out_of_range("Index not in vertices list");
+          //  throw1std::out_of_range("Index not in vertices list");
         }
     }
     // Create the primitive object.

@@ -330,8 +330,8 @@ public:
     // Call this before your multiple calls to Upload.
     void Begin(D3D12_COMMAND_LIST_TYPE commandType)
     {
-        if (mInBeginEndBlock)
-            throw std::logic_error("Can't Begin: already in a Begin-End block.");
+       // if (mInBeginEndBlock)
+            //throw1std::logic_error("Can't Begin: already in a Begin-End block.");
 
         switch (commandType)
         {
@@ -342,7 +342,7 @@ public:
 
         default:
             DebugTrace("ResourceUploadBatch only supports Direct, Compute, and Copy command queues\n");
-            throw std::invalid_argument("commandType parameter is invalid");
+          //  throw1std::invalid_argument("commandType parameter is invalid");
         }
 
         ThrowIfFailed(mDevice->CreateCommandAllocator(commandType, IID_GRAPHICS_PPV_ARGS(mCmdAlloc.ReleaseAndGetAddressOf())));
@@ -365,8 +365,8 @@ public:
         _In_reads_(numSubresources) const D3D12_SUBRESOURCE_DATA* subRes,
         uint32_t numSubresources)
     {
-        if (!mInBeginEndBlock)
-            throw std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
+   //     if (!mInBeginEndBlock)
+        //    throw1std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
 
         const UINT64 uploadSize = GetRequiredIntermediateSize(
             resource,
@@ -406,8 +406,8 @@ public:
         _In_ ID3D12Resource* resource,
         const SharedGraphicsResource& buffer)
     {
-        if (!mInBeginEndBlock)
-            throw std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
+        //if (!mInBeginEndBlock)
+            //throw1std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
 
         // Submit resource copy to command list
         mList->CopyBufferRegion(resource, 0, buffer.Resource(), buffer.ResourceOffset(), buffer.Size());
@@ -422,16 +422,16 @@ public:
     {
         if (resource == nullptr)
         {
-            throw std::invalid_argument("Nullptr passed to GenerateMips");
+          // throw1std::invalid_argument("Nullptr passed to GenerateMips");
         }
 
-        if (!mInBeginEndBlock)
-            throw std::logic_error("Can't call GenerateMips on a closed ResourceUploadBatch.");
+     //   if (!mInBeginEndBlock)
+        //    throw1std::logic_error("Can't call GenerateMips on a closed ResourceUploadBatch.");
 
         if (mCommandType == D3D12_COMMAND_LIST_TYPE_COPY)
         {
             DebugTrace("ERROR: GenerateMips cannot operate on a copy queue\n");
-            throw std::runtime_error("GenerateMips cannot operate on a copy queue");
+         //   throw1std::runtime_error("GenerateMips cannot operate on a copy queue");
         }
 
     #if defined(_MSC_VER) || !defined(_WIN32)
@@ -448,22 +448,22 @@ public:
         }
         if (desc.MipLevels == 0)
         {
-            throw std::runtime_error("GenerateMips: texture has no mips");
+           // throw1std::runtime_error("GenerateMips: texture has no mips");
         }
         if (desc.Dimension != D3D12_RESOURCE_DIMENSION_TEXTURE2D)
         {
-            throw std::runtime_error("GenerateMips only supports Texture2D resources");
+          //  throw1std::runtime_error("GenerateMips only supports Texture2D resources");
         }
         if (desc.DepthOrArraySize != 1)
         {
-            throw std::runtime_error("GenerateMips only supports 2D textures of array size 1");
+        //    throw1std::runtime_error("GenerateMips only supports 2D textures of array size 1");
         }
 
         const bool uavCompat = FormatIsUAVCompatible(mDevice.Get(), mTypedUAVLoadAdditionalFormats, desc.Format);
 
         if (!uavCompat && !FormatIsSRGB(desc.Format) && !FormatIsBGR(desc.Format))
         {
-            throw std::runtime_error("GenerateMips doesn't support this texture format on this device");
+         //   throw1std::runtime_error("GenerateMips doesn't support this texture format on this device");
         }
 
         // Ensure that we have valid generate mips data
@@ -480,14 +480,14 @@ public:
         }
         else if (!mTypedUAVLoadAdditionalFormats)
         {
-            throw std::runtime_error("GenerateMips needs TypedUAVLoadAdditionalFormats device support for sRGB/BGR");
+          //  throw1std::runtime_error("GenerateMips needs TypedUAVLoadAdditionalFormats device support for sRGB/BGR");
         }
         else if (FormatIsBGR(desc.Format))
         {
         #if !defined(_GAMING_XBOX) && !(defined(_XBOX_ONE) && defined(_TITLE))
             if (!mStandardSwizzle64KBSupported)
             {
-                throw std::runtime_error("GenerateMips needs StandardSwizzle64KBSupported device support for BGR");
+              //  throw1std::runtime_error("GenerateMips needs StandardSwizzle64KBSupported device support for BGR");
             }
         #endif
 
@@ -505,8 +505,8 @@ public:
         _In_ D3D12_RESOURCE_STATES stateBefore,
         _In_ D3D12_RESOURCE_STATES stateAfter)
     {
-        if (!mInBeginEndBlock)
-            throw std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
+      //  if (!mInBeginEndBlock)
+         //   throw1std::logic_error("Can't call Upload on a closed ResourceUploadBatch.");
 
         if (mCommandType == D3D12_COMMAND_LIST_TYPE_COPY)
         {
@@ -548,8 +548,8 @@ public:
     std::future<void> End(
         _In_ ID3D12CommandQueue* commandQueue)
     {
-        if (!mInBeginEndBlock)
-            throw std::logic_error("ResourceUploadBatch already closed.");
+      //  if (!mInBeginEndBlock)
+         //   throw1std::logic_error("ResourceUploadBatch already closed.");
 
         ThrowIfFailed(mList->Close());
 
@@ -563,8 +563,8 @@ public:
         SetDebugObjectName(fence.Get(), L"ResourceUploadBatch");
 
         HANDLE gpuCompletedEvent = CreateEventEx(nullptr, nullptr, 0, EVENT_MODIFY_STATE | SYNCHRONIZE);
-        if (!gpuCompletedEvent)
-            throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "CreateEventEx");
+      //  if (!gpuCompletedEvent)
+        //    throw1std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "CreateEventEx");
 
         ThrowIfFailed(commandQueue->Signal(fence.Get(), 1ULL));
         ThrowIfFailed(fence->SetEventOnCompletion(1ULL, gpuCompletedEvent));
@@ -587,11 +587,11 @@ public:
                 {
                     if (wr == WAIT_FAILED)
                     {
-                        throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "WaitForSingleObject");
+                 //       throw1std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "WaitForSingleObject");
                     }
                     else
                     {
-                        throw std::runtime_error("WaitForSingleObject");
+                     //   throw1std::runtime_error("WaitForSingleObject");
                     }
                 }
 

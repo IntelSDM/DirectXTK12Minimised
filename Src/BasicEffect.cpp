@@ -434,7 +434,7 @@ BasicEffect::Impl::Impl(
     if (effectFlags & EffectFlags::Instancing)
     {
         DebugTrace("ERROR: BasicEffect does not implement EffectFlags::Instancing\n");
-        throw std::invalid_argument("Instancing effect flag is invalid");
+      //  throw1std::invalid_argument("Instancing effect flag is invalid");
     }
 
     lights.InitializeConstants(constants.specularColorAndPower, constants.lightDirection, constants.lightDiffuseColor, constants.lightSpecularColor);
@@ -575,7 +575,7 @@ void BasicEffect::Impl::Apply(_In_ ID3D12GraphicsCommandList* commandList)
         if (!texture.ptr || !sampler.ptr)
         {
             DebugTrace("ERROR: Missing texture or sampler for BasicEffect (texture %llu, sampler %llu)\n", texture.ptr, sampler.ptr);
-            throw std::runtime_error("BasicEffect");
+         //   throw1std::runtime_error("BasicEffect");
         }
 
         // **NOTE** If D3D asserts or crashes here, you probably need to call commandList->SetDescriptorHeaps() with the required descriptor heaps.

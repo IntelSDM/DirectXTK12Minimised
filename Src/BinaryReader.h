@@ -44,11 +44,11 @@ namespace DirectX
 
             uint8_t const* newPos = mPos + sizeof(T) * elementCount;
 
-            if (newPos < mPos)
-                throw std::overflow_error("ReadArray");
+         //   if (newPos < mPos)
+            //    throw1std::overflow_error("ReadArray");
 
-            if (newPos > mEnd)
-                throw std::runtime_error("End of file");
+           // if (newPos > mEnd)
+             //   throw1std::runtime_error("End of file");
 
             auto result = reinterpret_cast<T const*>(mPos);
 

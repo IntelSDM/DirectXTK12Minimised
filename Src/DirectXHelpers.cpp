@@ -31,7 +31,7 @@ void DirectX::CreateShaderResourceView(
     if ((desc.Flags & D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE) != 0)
     {
         DebugTrace("ERROR: CreateShaderResourceView called on a resource created without support for SRV.\n");
-        throw std::runtime_error("Can't have D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE");
+        //throw1std::runtime_error("Can't have D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE");
     }
 
     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
@@ -91,12 +91,12 @@ void DirectX::CreateShaderResourceView(
 
     case D3D12_RESOURCE_DIMENSION_BUFFER:
         DebugTrace("ERROR: CreateShaderResourceView cannot be used with DIMENSION_BUFFER.\n\tUse CreateBufferShaderResourceView.\n");
-        throw std::invalid_argument("buffer resources not supported");
+        //throw1std::invalid_argument("buffer resources not supported");
 
     case D3D12_RESOURCE_DIMENSION_UNKNOWN:
     default:
         DebugTrace("ERROR: CreateShaderResourceView cannot be used with DIMENSION_UNKNOWN (%d).\n", desc.Dimension);
-        throw std::invalid_argument("unknown resource dimension");
+      //  throw1std::invalid_argument("unknown resource dimension");
     }
 
     device->CreateShaderResourceView(tex, &srvDesc, srvDescriptor);
@@ -119,7 +119,7 @@ void DirectX::CreateUnorderedAccessView(
     if ((desc.Flags & D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS) == 0)
     {
         DebugTrace("ERROR: CreateUnorderedResourceView called on a resource created without support for UAV.\n");
-        throw std::runtime_error("Requires D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS");
+        //throw1std::runtime_error("Requires D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS");
     }
 
     D3D12_UNORDERED_ACCESS_VIEW_DESC uavDesc = {};
@@ -164,12 +164,12 @@ void DirectX::CreateUnorderedAccessView(
 
     case D3D12_RESOURCE_DIMENSION_BUFFER:
         DebugTrace("ERROR: CreateUnorderedResourceView cannot be used with DIMENSION_BUFFER.\n\tUse CreateBufferUnorderedAccessView.\n");
-        throw std::invalid_argument("buffer resources not supported");
+        //throw1std::invalid_argument("buffer resources not supported");
 
     case D3D12_RESOURCE_DIMENSION_UNKNOWN:
     default:
         DebugTrace("ERROR: CreateUnorderedResourceView cannot be used with DIMENSION_UNKNOWN (%d).\n", desc.Dimension);
-        throw std::invalid_argument("unknown resource dimension");
+       // throw1std::invalid_argument("unknown resource dimension");
 
     }
     device->CreateUnorderedAccessView(tex, nullptr, &uavDesc, uavDescriptor);
@@ -192,7 +192,7 @@ void DirectX::CreateRenderTargetView(
     if ((desc.Flags & D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET) == 0)
     {
         DebugTrace("ERROR: CreateRenderTargetView called on a resource created without support for RTV.\n");
-        throw std::runtime_error("Requires D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET");
+       // throw1std::runtime_error("Requires D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET");
     }
 
     D3D12_RENDER_TARGET_VIEW_DESC rtvDesc = {};
@@ -249,12 +249,12 @@ void DirectX::CreateRenderTargetView(
 
     case D3D12_RESOURCE_DIMENSION_BUFFER:
         DebugTrace("ERROR: CreateRenderTargetView cannot be used with DIMENSION_BUFFER.\n");
-        throw std::invalid_argument("buffer resources not supported");
+    //    throw1std::invalid_argument("buffer resources not supported");
 
     case D3D12_RESOURCE_DIMENSION_UNKNOWN:
     default:
         DebugTrace("ERROR: CreateRenderTargetView cannot be used with DIMENSION_UNKNOWN (%d).\n", desc.Dimension);
-        throw std::invalid_argument("unknown resource dimension");
+        //throw1std::invalid_argument("unknown resource dimension");
 
     }
     device->CreateRenderTargetView(tex, &rtvDesc, rtvDescriptor);
@@ -278,7 +278,7 @@ void DirectX::CreateBufferShaderResourceView(
         || (desc.Flags & D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE) != 0)
     {
         DebugTrace("ERROR: CreateBufferShaderResourceView called on an unsupported resource.\n");
-        throw std::runtime_error("invalid buffer resource");
+        //throw1std::runtime_error("invalid buffer resource");
     }
 
     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
@@ -315,7 +315,7 @@ void DirectX::CreateBufferUnorderedAccessView(
         || (desc.Flags & D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS) == 0)
     {
         DebugTrace("ERROR: CreateBufferUnorderedAccessView called on an unsupported resource.\n");
-        throw std::runtime_error("invalid buffer resource");
+        //throw1std::runtime_error("invalid buffer resource");
     }
 
     D3D12_UNORDERED_ACCESS_VIEW_DESC uavDesc = {};

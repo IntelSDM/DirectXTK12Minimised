@@ -100,7 +100,7 @@ namespace DirectX
             {
                 void* temp = _aligned_malloc(sizeof(XMMATRIX) * count, 16);
                 if (!temp)
-                    throw std::bad_alloc();
+                    throw1std::bad_alloc();
                 return TransformArray(static_cast<XMMATRIX*>(temp));
             }
         };
@@ -699,12 +699,12 @@ namespace DirectX
                                 ++count;
                                 if (count > IEffectSkinning::MaxBones)
                                 {
-                                    throw std::runtime_error("Too many bones for skinning");
+                                    throw1std::runtime_error("Too many bones for skinning");
                                 }
 
                                 if (it >= nbones)
                                 {
-                                    throw std::runtime_error("Invalid bone influence index");
+                                    throw1std::runtime_error("Invalid bone influence index");
                                 }
 
                                 temp[count - 1] = boneTransforms[it];

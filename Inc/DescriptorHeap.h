@@ -98,7 +98,7 @@ namespace DirectX
             assert(m_pHeap != nullptr);
             if (index >= m_desc.NumDescriptors)
             {
-                throw std::out_of_range("D3DX12_GPU_DESCRIPTOR_HANDLE");
+            //    throw1std::out_of_range("D3DX12_GPU_DESCRIPTOR_HANDLE");
             }
             assert(m_desc.Flags & D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE);
 
@@ -112,7 +112,7 @@ namespace DirectX
             assert(m_pHeap != nullptr);
             if (index >= m_desc.NumDescriptors)
             {
-                throw std::out_of_range("D3DX12_CPU_DESCRIPTOR_HANDLE");
+               // throw1std::out_of_range("D3DX12_CPU_DESCRIPTOR_HANDLE");
             }
 
             D3D12_CPU_DESCRIPTOR_HANDLE handle;
@@ -142,7 +142,7 @@ namespace DirectX
 
 
     // Helper class for dynamically allocating descriptor indices.
-    // The pile is statically sized and will throw an exception if it becomes full.
+    // The pile is statically sized and will throw1an exception if it becomes full.
     class DescriptorPile : public DescriptorHeap
     {
     public:
@@ -157,7 +157,7 @@ namespace DirectX
         {
             if (reserve > 0 && m_top >= Count())
             {
-                throw std::out_of_range("Reserve descriptor range is too large");
+             //   throw1std::out_of_range("Reserve descriptor range is too large");
             }
         }
 
@@ -170,7 +170,7 @@ namespace DirectX
         {
             if (reserve > 0 && m_top >= Count())
             {
-                throw std::out_of_range("Reserve descriptor range is too large");
+              //  throw1std::out_of_range("Reserve descriptor range is too large");
             }
         }
 
@@ -185,7 +185,7 @@ namespace DirectX
         {
             if (reserve > 0 && m_top >= Count())
             {
-                throw std::out_of_range("Reserve descriptor range is too large");
+               // throw1std::out_of_range("Reserve descriptor range is too large");
             }
         }
 

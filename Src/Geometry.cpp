@@ -23,8 +23,8 @@ namespace
     inline void CheckIndexOverflow(size_t value)
     {
         // Use >=, not > comparison, because some D3D level 9_x hardware does not support 0xFFFF index values.
-        if (value >= USHRT_MAX)
-            throw std::out_of_range("Index value out of range: cannot tesselate primitive so finely");
+    //    if (value >= USHRT_MAX)
+         //   throw1std::out_of_range("Index value out of range: cannot tesselate primitive so finely");
     }
 
 
@@ -149,8 +149,8 @@ void DirectX::ComputeSphere(VertexCollection& vertices, IndexCollection& indices
     vertices.clear();
     indices.clear();
 
-    if (tessellation < 3)
-        throw std::invalid_argument("tesselation parameter must be at least 3");
+  //  if (tessellation < 3)
+    //    throw1std::invalid_argument("tesselation parameter must be at least 3");
 
     const size_t verticalSegments = tessellation;
     const size_t horizontalSegments = tessellation * 2;
@@ -614,8 +614,8 @@ void DirectX::ComputeCylinder(VertexCollection& vertices, IndexCollection& indic
     vertices.clear();
     indices.clear();
 
-    if (tessellation < 3)
-        throw std::invalid_argument("tesselation parameter must be at least 3");
+ //   if (tessellation < 3)
+   //     throw1std::invalid_argument("tesselation parameter must be at least 3");
 
     height /= 2;
 
@@ -663,8 +663,8 @@ void DirectX::ComputeCone(VertexCollection& vertices, IndexCollection& indices, 
     vertices.clear();
     indices.clear();
 
-    if (tessellation < 3)
-        throw std::invalid_argument("tesselation parameter must be at least 3");
+   // if (tessellation < 3)
+      //  throw1std::invalid_argument("tesselation parameter must be at least 3");
 
     height /= 2;
 
@@ -717,8 +717,8 @@ void DirectX::ComputeTorus(VertexCollection& vertices, IndexCollection& indices,
     vertices.clear();
     indices.clear();
 
-    if (tessellation < 3)
-        throw std::invalid_argument("tesselation parameter must be at least 3");
+  //  if (tessellation < 3)
+      //  throw1std::invalid_argument("tesselation parameter must be at least 3");
 
     const size_t stride = tessellation + 1;
 

@@ -96,8 +96,8 @@ namespace
         DeviceAllocator(_In_ ID3D12Device* device) noexcept(false)
             : mDevice(device)
         {
-            if (!device)
-                throw std::invalid_argument("Invalid device parameter");
+         //   if (!device)
+              //  throw1std::invalid_argument("Invalid device parameter");
 
             for (size_t i = 0; i < mPools.size(); ++i)
             {
@@ -143,7 +143,7 @@ namespace
             if (!page)
             {
                 DebugTrace("GraphicsMemory failed to allocate page (%zu requested bytes, %zu alignment)\n", size, alignment);
-                throw std::bad_alloc();
+                //throw1std::bad_alloc();
             }
 
             size_t offset = page->Suballocate(size, alignment);
@@ -242,7 +242,7 @@ public:
     #if (defined(_XBOX_ONE) && defined(_TITLE)) || defined(_GAMING_XBOX)
         if (s_graphicsMemory)
         {
-            throw std::logic_error("GraphicsMemory is a singleton");
+            throw1std::logic_error("GraphicsMemory is a singleton");
         }
 
         s_graphicsMemory = this;
@@ -279,7 +279,7 @@ public:
     #if !(defined(_XBOX_ONE) && defined(_TITLE)) && !defined(_GAMING_XBOX)
         if (s_graphicsMemory.find(device) != s_graphicsMemory.cend())
         {
-            throw std::logic_error("GraphicsMemory is a per-device singleton");
+            //throw1std::logic_error("GraphicsMemory is a per-device singleton");
         }
         s_graphicsMemory[device] = this;
     #endif
@@ -419,15 +419,15 @@ void GraphicsMemory::ResetStatistics()
 GraphicsMemory& GraphicsMemory::Get(_In_opt_ ID3D12Device*)
 {
     if (!Impl::s_graphicsMemory || !Impl::s_graphicsMemory->mOwner)
-        throw std::logic_error("GraphicsMemory singleton not created");
+        throw1std::logic_error("GraphicsMemory singleton not created");
 
     return *Impl::s_graphicsMemory->mOwner;
 }
 #else
 GraphicsMemory& GraphicsMemory::Get(_In_opt_ ID3D12Device* device)
 {
-    if (Impl::s_graphicsMemory.empty())
-        throw std::logic_error("GraphicsMemory singleton not created");
+  //  if (Impl::s_graphicsMemory.empty())
+        //throw1std::logic_error("GraphicsMemory singleton not created");
 
     std::map<ID3D12Device*, GraphicsMemory::Impl*>::const_iterator it;
     if (!device)
@@ -442,8 +442,8 @@ GraphicsMemory& GraphicsMemory::Get(_In_opt_ ID3D12Device* device)
         it = Impl::s_graphicsMemory.find(device);
     }
 
-    if (it == Impl::s_graphicsMemory.cend() || !it->second->mOwner)
-        throw std::logic_error("GraphicsMemory per-device singleton not created");
+   // if (it == Impl::s_graphicsMemory.cend() || !it->second->mOwner)
+      //  throw1std::logic_error("GraphicsMemory per-device singleton not created");
 
     return *it->second->mOwner;
 }

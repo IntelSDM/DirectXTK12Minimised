@@ -104,8 +104,8 @@ private:
 _Use_decl_annotations_
 size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int descriptorSlot)
 {
-    if (!name)
-        throw std::invalid_argument("name required for CreateTexture");
+    //if (!name)
+        //throw1std::invalid_argument("name required for CreateTexture");
 
     auto it = mTextureCache.find(name);
 
@@ -129,7 +129,7 @@ size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int
             if (!GetFileAttributesExW(fullName, GetFileExInfoStandard, &fileAttr))
             {
                 DebugTrace("ERROR: EffectTextureFactory could not find texture file '%ls'\n", name);
-                throw std::runtime_error("EffectTextureFactory::CreateTexture");
+             //   throw1std::runtime_error("EffectTextureFactory::CreateTexture");
             }
         }
 
@@ -159,7 +159,7 @@ size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int
             {
                 DebugTrace("ERROR: CreateDDSTextureFromFile failed (%08X) for '%ls'\n",
                     static_cast<unsigned int>(hr), fullName);
-                throw std::runtime_error("EffectTextureFactory::CreateDDSTextureFromFile");
+                //throw1std::runtime_error("EffectTextureFactory::CreateDDSTextureFromFile");
             }
         }
         else
@@ -183,7 +183,7 @@ size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int
             {
                 DebugTrace("ERROR: CreateWICTextureFromFile failed (%08X) for '%ls'\n",
                     static_cast<unsigned int>(hr), fullName);
-                throw std::runtime_error("EffectTextureFactory::CreateWICTextureFromFile");
+                //throw1std::runtime_error("EffectTextureFactory::CreateWICTextureFromFile");
             }
         }
 
@@ -316,8 +316,8 @@ size_t EffectTextureFactory::ResourceCount() const noexcept
 _Use_decl_annotations_
 void EffectTextureFactory::GetResource(size_t slot, ID3D12Resource** resource, bool* isCubeMap)
 {
-    if (slot >= pImpl->mResources.size())
-        throw std::invalid_argument("Resource slot is invalid");
+ //   if (slot >= pImpl->mResources.size())
+     //   throw1std::invalid_argument("Resource slot is invalid");
 
     const auto& textureEntry = pImpl->mResources[slot];
 

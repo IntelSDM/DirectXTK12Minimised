@@ -41,7 +41,7 @@ size_t LinearAllocatorPage::Suballocate(_In_ size_t size, _In_ size_t alignment)
     {
         // Use of suballocate should be limited to pages with free space,
         // so really shouldn't happen.
-        throw std::runtime_error("LinearAllocatorPage::Suballocate");
+    //    throw1std::runtime_error("LinearAllocatorPage::Suballocate");
     }
     mOffset = offset + size;
     return offset;
@@ -85,7 +85,7 @@ LinearAllocator::LinearAllocator(
         {
             DebugTrace("LinearAllocator failed to preallocate pages (%zu required bytes, %zu pages)\n",
                 preallocatePageCount * m_increment, preallocatePageCount);
-            throw std::bad_alloc();
+          //  throw1std::bad_alloc();
         }
     }
 
@@ -118,12 +118,12 @@ LinearAllocator::~LinearAllocator()
 LinearAllocatorPage* LinearAllocator::FindPageForAlloc(_In_ size_t size, _In_ size_t alignment)
 {
 #ifdef _DEBUG
-    if (size > m_increment)
-        throw std::out_of_range("Size must be less or equal to the allocator's increment");
-    if (alignment > m_increment)
-        throw std::out_of_range("Alignment must be less or equal to the allocator's increment");
-    if (size == 0)
-        throw std::invalid_argument("Cannot honor zero size allocation request.");
+ //   if (size > m_increment)
+  //      throw1std::out_of_range("Size must be less or equal to the allocator's increment");
+  //  if (alignment > m_increment)
+   //     throw1std::out_of_range("Alignment must be less or equal to the allocator's increment");
+   // if (size == 0)
+     //   throw1std::invalid_argument("Cannot honor zero size allocation request.");
 #endif
 
     auto page = GetPageForAlloc(size, alignment);
@@ -453,7 +453,7 @@ void LinearAllocator::ValidateList(LinearAllocatorPage* list)
     {
         if (page->pPrevPage != lastPage)
         {
-            throw std::runtime_error("Broken link to previous");
+            throw1std::runtime_error("Broken link to previous");
         }
     }
 }

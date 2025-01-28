@@ -79,17 +79,17 @@ PrimitiveBatchBase::Impl::Impl(_In_ ID3D12Device* device, size_t maxIndices, siz
     mBaseIndex(0),
     mBaseVertex(0)
 {
-    if (!maxVertices)
-        throw std::invalid_argument("maxVertices must be greater than 0");
+  //  if (!maxVertices)
+        //throw1std::invalid_argument("maxVertices must be greater than 0");
 
-    if (vertexSize > D3D12_REQ_MULTI_ELEMENT_STRUCTURE_SIZE_IN_BYTES)
-        throw std::invalid_argument("Vertex size is too large for DirectX 12");
+    //if (vertexSize > D3D12_REQ_MULTI_ELEMENT_STRUCTURE_SIZE_IN_BYTES)
+      //  throw1std::invalid_argument("Vertex size is too large for DirectX 12");
 
-    if ((uint64_t(maxIndices) * sizeof(uint16_t)) > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
-        throw std::invalid_argument("IB too large for DirectX 12");
+  //  if ((uint64_t(maxIndices) * sizeof(uint16_t)) > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
+   //     throw1std::invalid_argument("IB too large for DirectX 12");
 
-    if ((uint64_t(maxVertices) * uint64_t(vertexSize)) > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
-        throw std::invalid_argument("VB too large for DirectX 12");
+   // if ((uint64_t(maxVertices) * uint64_t(vertexSize)) > uint64_t(D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM * 1024u * 1024u))
+      //  throw1std::invalid_argument("VB too large for DirectX 12");
 }
 
 
@@ -97,8 +97,8 @@ PrimitiveBatchBase::Impl::Impl(_In_ ID3D12Device* device, size_t maxIndices, siz
 
 void PrimitiveBatchBase::Impl::Begin(_In_ ID3D12GraphicsCommandList* cmdList)
 {
-    if (mInBeginEndPair)
-        throw std::logic_error("Cannot nest Begin calls");
+ //   if (mInBeginEndPair)
+    //    throw1std::logic_error("Cannot nest Begin calls");
 
     mCommandList = cmdList;
     mInBeginEndPair = true;
@@ -108,8 +108,8 @@ void PrimitiveBatchBase::Impl::Begin(_In_ ID3D12GraphicsCommandList* cmdList)
 // Ends a batch of primitive drawing operations.
 void PrimitiveBatchBase::Impl::End()
 {
-    if (!mInBeginEndPair)
-        throw std::logic_error("Begin must be called before End");
+  //  if (!mInBeginEndPair)
+   //     throw1std::logic_error("Begin must be called before End");
 
     FlushBatch();
 
@@ -146,17 +146,17 @@ static bool CanBatchPrimitives(D3D_PRIMITIVE_TOPOLOGY topology) noexcept
 _Use_decl_annotations_
 void PrimitiveBatchBase::Impl::Draw(D3D_PRIMITIVE_TOPOLOGY topology, bool isIndexed, uint16_t const* indices, size_t indexCount, size_t vertexCount, void** pMappedVertices)
 {
-    if (isIndexed && !indices)
-        throw std::invalid_argument("Indices cannot be null");
+  //  if (isIndexed && !indices)
+   //     throw1std::invalid_argument("Indices cannot be null");
 
-    if (indexCount >= mMaxIndices)
-        throw std::invalid_argument("Too many indices");
+  //  if (indexCount >= mMaxIndices)
+   //     throw1std::invalid_argument("Too many indices");
 
-    if (vertexCount >= mMaxVertices)
-        throw std::invalid_argument("Too many vertices");
+  //  if (vertexCount >= mMaxVertices)
+   //     throw1std::invalid_argument("Too many vertices");
 
-    if (!mInBeginEndPair)
-        throw std::logic_error("Begin must be called before Draw");
+    //if (!mInBeginEndPair)
+    //    throw1std::logic_error("Begin must be called before Draw");
 
     assert(pMappedVertices != nullptr);
 

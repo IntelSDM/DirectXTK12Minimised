@@ -123,7 +123,7 @@ SpriteFont::Impl::Impl(
         if (reader->Read<uint8_t>() != *magic)
         {
             DebugTrace("ERROR: SpriteFont provided with an invalid .spritefont file\n");
-            throw std::runtime_error("Not a MakeSpriteFont output binary");
+          //  throw1std::runtime_error("Not a MakeSpriteFont output binary");
         }
     }
 
@@ -155,7 +155,7 @@ SpriteFont::Impl::Impl(
     if (dataSize > UINT32_MAX)
     {
         DebugTrace("ERROR: SpriteFont provided with an invalid .spritefont file\n");
-        throw std::overflow_error("Invalid .spritefont file");
+       // throw1std::overflow_error("Invalid .spritefont file");
     }
 
     auto textureData = reader->ReadArray<uint8_t>(static_cast<size_t>(dataSize));
@@ -202,7 +202,7 @@ SpriteFont::Impl::Impl(
 {
     if (!std::is_sorted(iglyphs, iglyphs + glyphCount))
     {
-        throw std::runtime_error("Glyphs must be in ascending codepoint order");
+      //  throw1std::runtime_error("Glyphs must be in ascending codepoint order");
     }
 
     glyphsIndex.reserve(glyphs.size());
@@ -258,7 +258,7 @@ SpriteFont::Glyph const* SpriteFont::Impl::FindGlyph(wchar_t character) const
     }
 
     DebugTrace("ERROR: SpriteFont encountered a character not in the font (%u, %C), and no default glyph was provided\n", character, character);
-    throw std::runtime_error("Character not in font");
+  //  throw1std::runtime_error("Character not in font");
 }
 
 
@@ -336,7 +336,7 @@ void SpriteFont::Impl::CreateTextureResource(
     if (sliceBytes > UINT32_MAX)
     {
         DebugTrace("ERROR: SpriteFont provided with an invalid .spritefont file\n");
-        throw std::overflow_error("Invalid .spritefont file");
+      //  throw1std::overflow_error("Invalid .spritefont file");
     }
 
     D3D12_RESOURCE_DESC desc = {};
@@ -398,7 +398,7 @@ const wchar_t* SpriteFont::Impl::ConvertUTF8(_In_z_ const char *text) noexcept(f
     if (!result)
     {
         DebugTrace("ERROR: MultiByteToWideChar failed with error %u.\n", GetLastError());
-        throw std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "MultiByteToWideChar");
+       // throw1std::system_error(std::error_code(static_cast<int>(GetLastError()), std::system_category()), "MultiByteToWideChar");
     }
 
     return utfBuffer.get();

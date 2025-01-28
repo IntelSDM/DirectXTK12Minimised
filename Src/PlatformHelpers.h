@@ -60,7 +60,7 @@ namespace DirectX
     {
         if (FAILED(hr))
         {
-            throw com_exception(hr);
+        //    throw1com_exception(hr);
         }
     }
 
