@@ -27,9 +27,6 @@
     <ClInclude Include="Inc\CommonStates.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\ScreenGrab.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\SpriteBatch.h">
       <Filter>Inc</Filter>
     </ClInclude>
@@ -60,9 +57,6 @@
     <ClInclude Include="Inc\WICTextureLoader.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Model.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\DirectXHelpers.h">
       <Filter>Inc</Filter>
     </ClInclude>
@@ -81,9 +75,6 @@
     <ClInclude Include="Src\d3dx12.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Audio.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Bezier.h">
       <Filter>Src\Shared</Filter>
     </ClInclude>
@@ -97,12 +88,6 @@
       <Filter>Src\Shared</Filter>
     </ClInclude>
     <ClInclude Include="Inc\GamePad.h">
-      <Filter>Inc\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Keyboard.h">
-      <Filter>Inc\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Mouse.h">
       <Filter>Inc\Shared</Filter>
     </ClInclude>
     <ClInclude Include="Inc\SimpleMath.h">

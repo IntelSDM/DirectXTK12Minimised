@@ -19,7 +19,6 @@
 
 using namespace DirectX;
 using Microsoft::WRL::ComPtr;
-using ScopedLock = std::lock_guard<std::mutex>;
 
 namespace
 {
@@ -117,7 +116,7 @@ namespace
         // Explicitly destroy LinearAllocators inside a critical section
         ~DeviceAllocator()
         {
-            const ScopedLock lock(mMutex);
+        
 
             for (auto& allocator : mPools)
             {
@@ -127,7 +126,7 @@ namespace
 
         GraphicsResource Alloc(_In_ size_t size, _In_ size_t alignment)
         {
-            ScopedLock lock(mMutex);
+         
 
             // Which memory pool does it live in?
             const size_t poolSize = NextPow2((alignment + size) * PoolIndexScale);
@@ -161,7 +160,6 @@ namespace
         // Submit page fences to the command queue
         void KickFences(_In_ ID3D12CommandQueue* commandQueue)
         {
-            ScopedLock lock(mMutex);
 
             for (auto& i : mPools)
             {
@@ -175,7 +173,6 @@ namespace
 
         void GarbageCollect()
         {
-            ScopedLock lock(mMutex);
 
             for (auto& i : mPools)
             {
@@ -191,9 +188,6 @@ namespace
             size_t totalPageCount = 0;
             size_t committedMemoryUsage = 0;
             size_t totalMemoryUsage = 0;
-
-            ScopedLock lock(mMutex);
-
             for (auto& i : mPools)
             {
                 if (i)
@@ -217,7 +211,6 @@ namespace
     private:
         ComPtr<ID3D12Device> mDevice;
         std::array<std::unique_ptr<LinearAllocator>, AllocatorPoolCount> mPools;
-        mutable std::mutex mMutex;
     };
 
 #ifdef USING_PIX_CUSTOM_MEMORY_EVENTS

@@ -198,13 +198,11 @@
 #include <cstdlib>
 #include <cstring>
 #include <cwchar>
-#include <exception>
 #include <initializer_list>
 #include <iterator>
 #include <list>
 #include <map>
 #include <memory>
-#include <mutex>
 #include <new>
 #include <set>
 #include <stdexcept>

@@ -11,7 +11,6 @@
 #pragma once
 
 #include <memory>
-#include <exception>
 #include <stdexcept>
 #include <type_traits>
 

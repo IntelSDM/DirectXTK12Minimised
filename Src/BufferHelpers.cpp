@@ -65,13 +65,13 @@ HRESULT DirectX::CreateStaticBuffer(
 
     D3D12_SUBRESOURCE_DATA initData = { ptr, 0, 0 };
 
-    try
-    {
+    //try
+  //  {
         resourceUpload.Upload(res.Get(), 0, &initData, 1);
 
         resourceUpload.Transition(res.Get(), D3D12_RESOURCE_STATE_COPY_DEST, afterState);
-    }
-    catch (com_exception e)
+  //  }
+  /*  catch (com_exception e)
     {
         return e.get_result();
     }
@@ -79,7 +79,7 @@ HRESULT DirectX::CreateStaticBuffer(
     {
         return E_FAIL;
     }
-
+    */
     *pBuffer = res.Detach();
 
     return S_OK;
@@ -235,12 +235,12 @@ HRESULT DirectX::CreateTextureFromMemory(
     if (FAILED(hr))
         return hr;
 
-    try
-    {
+    //try
+    //{
         resourceUpload.Upload(res.Get(), 0, &initData, 1);
 
         resourceUpload.Transition(res.Get(), D3D12_RESOURCE_STATE_COPY_DEST, afterState);
-    }
+ /* }
     catch (com_exception e)
     {
         return e.get_result();
@@ -248,8 +248,7 @@ HRESULT DirectX::CreateTextureFromMemory(
     catch (...)
     {
         return E_FAIL;
-    }
-
+    }*/
     *texture = res.Detach();
 
     return S_OK;
@@ -312,8 +311,8 @@ HRESULT DirectX::CreateTextureFromMemory(
     if (FAILED(hr))
         return hr;
 
-    try
-    {
+  //  try
+    //{
         resourceUpload.Upload(res.Get(), 0, &initData, 1);
 
         resourceUpload.Transition(res.Get(), D3D12_RESOURCE_STATE_COPY_DEST, afterState);
@@ -322,7 +321,7 @@ HRESULT DirectX::CreateTextureFromMemory(
         {
             resourceUpload.GenerateMips(res.Get());
         }
-    }
+   /* }
     catch (com_exception e)
     {
         return e.get_result();
@@ -331,7 +330,7 @@ HRESULT DirectX::CreateTextureFromMemory(
     {
         return E_FAIL;
     }
-
+    */
     *texture = res.Detach();
 
     return S_OK;
@@ -385,12 +384,12 @@ HRESULT DirectX::CreateTextureFromMemory(
     if (FAILED(hr))
         return hr;
 
-    try
-    {
+  //  try
+   // {
         resourceUpload.Upload(res.Get(), 0, &initData, 1);
 
         resourceUpload.Transition(res.Get(), D3D12_RESOURCE_STATE_COPY_DEST, afterState);
-    }
+ /* }
     catch (com_exception e)
     {
         return e.get_result();
@@ -399,7 +398,7 @@ HRESULT DirectX::CreateTextureFromMemory(
     {
         return E_FAIL;
     }
-
+    */
     *texture = res.Detach();
 
     return S_OK;

@@ -27,7 +27,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\Audio.h" />
     <ClInclude Include="Inc\BufferHelpers.h" />
     <ClInclude Include="Inc\CommonStates.h" />
     <ClInclude Include="Inc\DDSTextureLoader.h" />
@@ -38,15 +37,11 @@
     <ClInclude Include="Inc\GamePad.h" />
     <ClInclude Include="Inc\GeometricPrimitive.h" />
     <ClInclude Include="Inc\GraphicsMemory.h" />
-    <ClInclude Include="Inc\Keyboard.h" />
-    <ClInclude Include="Inc\Model.h" />
-    <ClInclude Include="Inc\Mouse.h" />
     <ClInclude Include="Inc\PostProcess.h" />
     <ClInclude Include="Inc\RenderTargetState.h" />
     <ClInclude Include="Inc\ResourceUploadBatch.h" />
     <ClInclude Include="Inc\SimpleMath.h" />
     <ClInclude Include="Inc\SimpleMath.inl" />
-    <ClInclude Include="Inc\ScreenGrab.h" />
     <ClInclude Include="Inc\SpriteBatch.h" />
     <ClInclude Include="Inc\PrimitiveBatch.h" />
     <ClInclude Include="Inc\SpriteFont.h" />
@@ -335,6 +330,8 @@
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <FXCompile>
       <ShaderModel>6.0</ShaderModel>

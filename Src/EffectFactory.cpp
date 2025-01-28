@@ -14,7 +14,6 @@
 #include "PlatformHelpers.h"
 #include "DescriptorHeap.h"
 
-#include <mutex>
 
 
 using namespace DirectX;
@@ -112,7 +111,7 @@ private:
     EffectCache  mEffectCacheNormalMap;
     EffectCache  mEffectCacheNormalMapSkinned;
 
-    std::mutex mutex;
+  //  std::mutex mutex;
 };
 
 
@@ -221,7 +220,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
             if (mSharing && !info.name.empty())
             {
-                std::lock_guard<std::mutex> lock(mutex);
+            //    std::lock_guard<std::mutex> lock(mutex);
                 EffectCache::value_type v(cacheName, effect);
                 mEffectCacheNormalMapSkinned.insert(v);
             }
@@ -256,7 +255,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
             if (mSharing && !info.name.empty())
             {
-                std::lock_guard<std::mutex> lock(mutex);
+              //  std::lock_guard<std::mutex> lock(mutex);
                 EffectCache::value_type v(cacheName, effect);
                 mEffectCacheSkinning.insert(v);
             }
@@ -334,7 +333,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
         if (mSharing && !info.name.empty())
         {
-            std::lock_guard<std::mutex> lock(mutex);
+         //   std::lock_guard<std::mutex> lock(mutex);
             EffectCache::value_type v(cacheName, effect);
             mEffectCacheDualTexture.insert(v);
         }
@@ -406,7 +405,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
         if (mSharing && !info.name.empty())
         {
-            std::lock_guard<std::mutex> lock(mutex);
+         //   std::lock_guard<std::mutex> lock(mutex);
             EffectCache::value_type v(cacheName, effect);
             mEffectCacheNormalMap.insert(v);
         }
@@ -469,7 +468,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
         if (mSharing && !info.name.empty())
         {
-            std::lock_guard<std::mutex> lock(mutex);
+           // std::lock_guard<std::mutex> lock(mutex);
             EffectCache::value_type v(cacheName, effect);
             mEffectCache.insert(v);
         }
@@ -480,7 +479,7 @@ std::shared_ptr<IEffect> EffectFactory::Impl::CreateEffect(
 
 void EffectFactory::Impl::ReleaseCache()
 {
-    std::lock_guard<std::mutex> lock(mutex);
+ //   std::lock_guard<std::mutex> lock(mutex);
     mEffectCache.clear();
     mEffectCacheSkinning.clear();
     mEffectCacheDualTexture.clear();

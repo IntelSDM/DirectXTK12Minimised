@@ -17,7 +17,6 @@
 #include "ResourceUploadBatch.h"
 #include "WICTextureLoader.h"
 
-#include <mutex>
 
 
 using namespace DirectX;
@@ -97,7 +96,6 @@ private:
     bool                           mForceSRGB;
     bool                           mAutoGenMips;
 
-    std::mutex                     mutex;
 };
 
 
@@ -187,7 +185,6 @@ size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int
             }
         }
 
-        std::lock_guard<std::mutex> lock(mutex);
         textureEntry.slot = mResources.size();
         if (mSharing)
         {
@@ -208,7 +205,7 @@ size_t EffectTextureFactory::Impl::CreateTexture(_In_z_ const wchar_t* name, int
 
 void EffectTextureFactory::Impl::ReleaseCache()
 {
-    std::lock_guard<std::mutex> lock(mutex);
+
     mTextureCache.clear();
 }
 

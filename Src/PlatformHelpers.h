@@ -14,7 +14,6 @@
 #pragma warning(disable : 4324)
 #endif
 
-#include <exception>
 #include <memory>
 
 #ifndef MAKEFOURCC
