@@ -14,12 +14,11 @@
 #include "Effects.h"
 #include "PlatformHelpers.h"
 #include "SharedResourcePool.h"
-#include "AlignedNew.h"
 #include "DescriptorHeap.h"
 #include "GraphicsMemory.h"
 #include "DirectXHelpers.h"
 #include "RenderTargetState.h"
-
+#include "AlignedNew.h"
 // BasicEffect, SkinnedEffect, et al, have many things in common, but also significant
 // differences (for instance, not all the effects support lighting). This header breaks
 // out common functionality into a set of helpers which can be assembled in different

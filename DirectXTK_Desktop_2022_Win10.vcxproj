@@ -58,7 +58,6 @@
     <ClInclude Include="Src\AlignedNew.h" />
     <ClInclude Include="Src\Bezier.h" />
     <ClInclude Include="Src\BinaryReader.h" />
-    <ClInclude Include="Src\CMO.h" />
     <ClInclude Include="Src\d3dx12.h" />
     <ClInclude Include="Src\DemandCreate.h" />
     <ClInclude Include="Src\EffectCommon.h" />
@@ -67,7 +66,6 @@
     <ClInclude Include="Src\LoaderHelpers.h" />
     <ClInclude Include="Src\pch.h" />
     <ClInclude Include="Src\PlatformHelpers.h" />
-    <ClInclude Include="Src\SDKMesh.h" />
     <ClInclude Include="Src\SharedResourcePool.h" />
     <ClInclude Include="Src\DDS.h" />
     <ClInclude Include="Src\vbo.h" />
@@ -82,37 +80,21 @@
     <ClCompile Include="Audio\WaveBank.cpp" />
     <ClCompile Include="Audio\WaveBankReader.cpp" />
     <ClCompile Include="Audio\WAVFileReader.cpp" />
-    <ClCompile Include="Src\AlphaTestEffect.cpp" />
     <ClCompile Include="Src\BasicEffect.cpp" />
-    <ClCompile Include="Src\BasicPostProcess.cpp" />
+    <ClCompile Include="Src\BinaryReader.cpp" />
     <ClCompile Include="Src\BufferHelpers.cpp" />
     <ClCompile Include="Src\CommonStates.cpp" />
     <ClCompile Include="Src\DDSTextureLoader.cpp" />
-    <ClCompile Include="Src\DebugEffect.cpp" />
     <ClCompile Include="Src\DescriptorHeap.cpp" />
     <ClCompile Include="Src\DirectXHelpers.cpp" />
-    <ClCompile Include="Src\DualPostProcess.cpp" />
-    <ClCompile Include="Src\DualTextureEffect.cpp" />
-    <ClCompile Include="Src\BinaryReader.cpp" />
     <ClCompile Include="Src\EffectCommon.cpp" />
     <ClCompile Include="Src\EffectFactory.cpp" />
     <ClCompile Include="Src\EffectPipelineStateDescription.cpp" />
     <ClCompile Include="Src\EffectTextureFactory.cpp" />
-    <ClCompile Include="Src\EnvironmentMapEffect.cpp" />
-    <ClCompile Include="Src\GamePad.cpp" />
     <ClCompile Include="Src\GeometricPrimitive.cpp" />
     <ClCompile Include="Src\Geometry.cpp" />
-    <ClCompile Include="Src\Keyboard.cpp" />
-    <ClCompile Include="Src\LinearAllocator.cpp" />
-    <ClCompile Include="Src\Model.cpp" />
-    <ClCompile Include="Src\ModelLoadCMO.cpp" />
-    <ClCompile Include="Src\ModelLoadSDKMESH.cpp" />
-    <ClCompile Include="Src\ModelLoadVBO.cpp" />
-    <ClCompile Include="Src\Mouse.cpp" />
     <ClCompile Include="Src\GraphicsMemory.cpp" />
-    <ClCompile Include="Src\NormalMapEffect.cpp" />
-    <ClCompile Include="Src\PBREffect.cpp" />
-    <ClCompile Include="Src\PBREffectFactory.cpp" />
+    <ClCompile Include="Src\LinearAllocator.cpp" />
     <ClCompile Include="Src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -122,29 +104,22 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Src\ResourceUploadBatch.cpp" />
-    <ClCompile Include="Src\ScreenGrab.cpp" />
     <ClCompile Include="Src\SimpleMath.cpp" />
-    <ClCompile Include="Src\SkinnedEffect.cpp" />
-    <ClCompile Include="Src\SpriteBatch.cpp" />
     <ClCompile Include="Src\PrimitiveBatch.cpp" />
+    <ClCompile Include="Src\SpriteBatch.cpp" />
     <ClCompile Include="Src\SpriteFont.cpp" />
-    <ClCompile Include="Src\ToneMapPostProcess.cpp" />
     <ClCompile Include="Src\VertexTypes.cpp" />
-    <ClCompile Include="Src\WICTextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
     <None Include="Src\Shaders\Common.fxh" />
     <None Include="Src\Shaders\CompileShaders.cmd" />
-    <None Include="Src\Shaders\Lighting.fxh" />
     <None Include="Src\Shaders\PBRCommon.fxh" />
     <None Include="Src\Shaders\PixelPacking_Velocity.hlsli" />
     <None Include="Src\Shaders\RootSig.fxh" />
-    <None Include="Src\Shaders\Skinning.fxh" />
     <None Include="Src\Shaders\SpriteEffect.fx" />
     <None Include="Src\Shaders\Structures.fxh" />
     <None Include="Src\Shaders\Utilities.fxh" />
-    <None Include="Src\TeapotData.inc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Shaders\BasicEffect.fx">
@@ -152,16 +127,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Src\Shaders\AlphaTestEffect.fx">
-      <FileType>Document</FileType>
-    </None>
     <None Include="Src\Shaders\DualTextureEffect.fx">
       <FileType>Document</FileType>
     </None>
     <None Include="Src\Shaders\EnvironmentMapEffect.fx">
-      <FileType>Document</FileType>
-    </None>
-    <None Include="Src\Shaders\SkinnedEffect.fx">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
@@ -171,25 +140,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Src\Shaders\NormalMapEffect.fx">
-      <FileType>Document</FileType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Src\Shaders\PostProcess.fx">
-      <FileType>Document</FileType>
-    </None>
-    <None Include="Src\Shaders\ToneMap.fx">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Shaders\PBREffect.fx">
-      <FileType>Document</FileType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Src\Shaders\DebugEffect.fx">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
@@ -223,7 +179,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>ClangCL</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
